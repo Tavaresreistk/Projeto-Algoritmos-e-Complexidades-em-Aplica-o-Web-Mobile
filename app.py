@@ -31,11 +31,24 @@ def search():
         items = search_items(query)
     return render_template('search.html', items=items)
 
-@app.route('/delete/<code>')
-def delete(code):
-    delete_item(code)
-    return redirect(url_for('index'))
+@app.route("/delete-multiple", methods=["POST"])
+def delete_multiple():
+    codes = request.form.getlist("delete_ids")
+
+    if not codes:
+        return redirect("/")  # nenhum item selecionado
+
+    conn = sqlite3.connect("data.db")
+    cursor = conn.cursor()
+
+    for code in codes:
+        cursor.execute("DELETE FROM items WHERE code = ?", (code,))
+
+    conn.commit()
+    conn.close()
+
+    return redirect("/")
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)
-    
+
