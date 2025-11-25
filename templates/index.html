@@ -4,14 +4,111 @@
   <meta charset="UTF-8">
   <title>Armazém - Itens</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #eef2f3, #dfe9f3);
+      font-family: "Inter", Arial, sans-serif;
+      color: #333;
+    }
+
+    .container {
+      background: #ffffffcc;
+      backdrop-filter: blur(6px);
+      padding: 30px;
+      border-radius: 14px;
+      margin-top: 40px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      font-weight: 700;
+      color: #2b2b2b;
+      letter-spacing: -0.5px;
+    }
+
+    .btn {
+      font-weight: 600;
+      border-radius: 8px;
+      padding: 8px 16px;
+      transition: 0.2s;
+    }
+
+    .btn-success {
+      background: #22c55e;
+      border: none;
+    }
+    .btn-success:hover {
+      background: #16a34a;
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: #3b82f6;
+      border: none;
+    }
+    .btn-primary:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+    }
+
+    .btn-danger {
+      background: #ef4444;
+      border: none;
+    }
+    .btn-danger:hover {
+      background: #dc2626;
+      transform: scale(1.05);
+    }
+
+    table {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    thead {
+      background: #f1f5f9;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    th {
+      font-weight: 700;
+      color: #475569;
+    }
+
+    tbody tr {
+      transition: 0.15s;
+    }
+
+    tbody tr:hover {
+      background: #f8fafc;
+      transform: scale(1.01);
+    }
+  </style>
+
 </head>
-<body class="bg-light">
-  <div class="container mt-4">
+<body>
+  <div class="container">
     <h2 class="mb-4">📦 Lista de Itens do Armazém</h2>
-    <a href="/add" class="btn btn-success mb-3">+ Adicionar Item</a>
-    <a href="/search" class="btn btn-primary mb-3">🔍 Buscar Itens</a>
+
+    <div class="d-flex gap-2 mb-3">
+      <a href="/add" class="btn btn-success">+ Adicionar Item</a>
+      <a href="/search" class="btn btn-primary">🔍 Buscar Itens</a>
+    </div>
+
     <table class="table table-striped">
-      <thead><tr><th>ID</th><th>Nome</th><th>Categoria</th><th>Quantidade</th><th>Código</th><th>Ações</th></tr></thead>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Categoria</th>
+          <th>Quantidade</th>
+          <th>Código</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
       <tbody>
         {% for item in items %}
         <tr>
